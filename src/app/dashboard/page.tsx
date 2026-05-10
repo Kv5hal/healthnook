@@ -2,6 +2,7 @@ import {
   CalendarPlus,
   ClipboardList,
   ExternalLink,
+  LibraryBig,
   Pencil,
   UserCheck,
   UsersRound,
@@ -53,8 +54,13 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
     .select("id, title, event_type, start_time, end_time, location, published")
     .eq("organization_id", organization.id)
     .order("start_time", { ascending: true });
+  const { data: resources } = await supabase
+    .from("resources")
+    .select("id, published")
+    .eq("organization_id", organization.id);
 
   const eventList = events ?? [];
+  const resourceList = resources ?? [];
   const countsByEvent = await getSignupCountsByEvent(
     supabase,
     eventList.map((event) => event.id),
@@ -69,6 +75,8 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
     (sum, event) => sum + getCountsForEvent(countsByEvent, event.id).volunteers,
     0,
   );
+  const publishedResources = resourceList.filter((resource) => resource.published)
+    .length;
 
   return (
     <>
@@ -92,6 +100,10 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
                 <CalendarPlus className="size-4" aria-hidden="true" />
                 Create Event
               </ButtonLink>
+              <ButtonLink href="/dashboard/resources" variant="outline">
+                <LibraryBig className="size-4" aria-hidden="true" />
+                Resources
+              </ButtonLink>
               <form action={signOutAction}>
                 <SubmitButton variant="secondary">Log Out</SubmitButton>
               </form>
@@ -100,7 +112,7 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
 
           <AuthMessage error={params.error} message={params.message} />
 
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             <SurfaceCard>
               <div className="flex size-11 items-center justify-center rounded-lg bg-teal-50 text-teal-700">
                 <UsersRound className="size-5" aria-hidden="true" />
@@ -145,6 +157,19 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
               </h2>
               <p className="mt-2 leading-7 text-slate-600">
                 {totalRsvps} RSVPs | {totalVolunteers} volunteers
+              </p>
+            </SurfaceCard>
+
+            <SurfaceCard>
+              <div className="flex size-11 items-center justify-center rounded-lg bg-amber-50 text-amber-700">
+                <LibraryBig className="size-5" aria-hidden="true" />
+              </div>
+              <h2 className="mt-5 text-lg font-semibold text-slate-950">
+                Resources
+              </h2>
+              <p className="mt-2 leading-7 text-slate-600">
+                {publishedResources} published |{" "}
+                {resourceList.length - publishedResources} draft
               </p>
             </SurfaceCard>
           </div>

@@ -5,6 +5,7 @@ import { ButtonLink } from "@/components/ui/button-link";
 import { getCurrentUser } from "@/lib/auth/session";
 
 const navItems = [
+  { href: "/resources", label: "Resources" },
   { href: "/#features", label: "Features" },
   { href: "/#use-cases", label: "Use cases" },
   { href: "/#impact", label: "Impact" },

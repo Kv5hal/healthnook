@@ -18,22 +18,22 @@ const siteUrl = getPublicSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "HealthNook | Community health event platform",
+  title: "HealthNook | Community health access platform",
   description:
-    "Create health events, manage volunteers, and track community impact with HealthNook.",
+    "Publish health events and resources, explain information in plain language, generate outreach, and track community impact with HealthNook.",
   openGraph: {
     description:
-      "Create health events, manage volunteers, and track community impact with HealthNook.",
+      "Publish health events and resources, explain information in plain language, generate outreach, and track community impact with HealthNook.",
     siteName: "HealthNook",
-    title: "HealthNook | Community health event platform",
+    title: "HealthNook | Community health access platform",
     type: "website",
     url: siteUrl,
   },
   twitter: {
     card: "summary_large_image",
     description:
-      "Create health events, manage volunteers, and track community impact with HealthNook.",
-    title: "HealthNook | Community health event platform",
+      "Publish health events and resources, explain information in plain language, generate outreach, and track community impact with HealthNook.",
+    title: "HealthNook | Community health access platform",
   },
 };
 

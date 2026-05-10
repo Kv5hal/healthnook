@@ -7,12 +7,11 @@ import {
   CalendarPlus,
   ClipboardCheck,
   Languages,
+  LibraryBig,
   MailCheck,
   MapPin,
   Megaphone,
-  QrCode,
   Search,
-  UsersRound,
 } from "lucide-react";
 
 import { SiteFooter } from "@/components/site-footer";
@@ -22,40 +21,40 @@ import { SurfaceCard } from "@/components/ui/surface-card";
 
 const features = [
   {
-    title: "Event pages",
+    title: "Publish events and resources",
     description:
-      "Publish clear pages for blood drives, workshops, clinics, fairs, and trainings.",
+      "Create public pages for health events, services, support programs, and local access points.",
     icon: CalendarCheck2,
   },
   {
-    title: "RSVP tracking",
+    title: "Plain-language explanations",
     description:
-      "Collect names, guest counts, contact details, and attendance status in one place.",
+      "Turn organizer details into simple, editable information families can understand.",
+    icon: Accessibility,
+  },
+  {
+    title: "Outreach generation",
+    description:
+      "Generate captions, announcements, reminders, and thank-you messages from event data.",
+    icon: Megaphone,
+  },
+  {
+    title: "Multilingual access",
+    description:
+      "Support Spanish and Nepali drafts when optional AI configuration is enabled.",
+    icon: Languages,
+  },
+  {
+    title: "RSVPs and volunteers",
+    description:
+      "Collect attendee RSVPs, guest counts, volunteer roles, and logistics notes.",
     icon: ClipboardCheck,
   },
   {
-    title: "Volunteer coordination",
+    title: "Attendance and impact",
     description:
-      "Capture preferred roles, availability notes, and support needs before event day.",
-    icon: UsersRound,
-  },
-  {
-    title: "QR check-in",
-    description:
-      "Open an organizer check-in view, share the event QR code, and mark attendees present.",
-    icon: QrCode,
-  },
-  {
-    title: "Impact summaries",
-    description:
-      "See RSVPs, volunteers, check-ins, and attendance percentage for each event.",
+      "Use QR check-in and dashboards to track turnout, volunteers, and community reach.",
     icon: BarChart3,
-  },
-  {
-    title: "Outreach templates",
-    description:
-      "Start from editable captions, reminders, announcements, and thank-you messages.",
-    icon: Megaphone,
   },
 ];
 
@@ -68,6 +67,8 @@ const useCases = [
   "First-aid trainings",
   "Health education events",
   "Community resource days",
+  "Free or low-cost services",
+  "Family support resources",
 ];
 
 const audiences = [
@@ -99,21 +100,25 @@ export default function Home() {
           <div className="mx-auto flex min-h-[68svh] w-full max-w-7xl items-center px-4 py-10 sm:px-6 lg:px-8">
             <div className="max-w-3xl text-white">
               <p className="mb-4 inline-flex rounded-lg border border-white/20 bg-white/10 px-3 py-1 text-sm font-semibold text-emerald-50 backdrop-blur">
-                HealthNook for community organizers
+                AI-powered community health access
               </p>
               <h1 className="text-4xl font-semibold leading-tight tracking-normal text-white sm:text-5xl">
-                Create health events. Manage volunteers. Track community
-                impact.
+                Create, explain, promote, and track community health access.
               </h1>
               <p className="mt-4 max-w-2xl text-base leading-8 text-emerald-50/90 sm:text-lg">
-                A free-tier friendly platform for local groups running health
-                fairs, CPR workshops, wellness seminars, clinics, and
-                volunteer-powered community programs.
+                HealthNook helps local organizations publish health events and
+                resources, explain information in plain language, generate
+                outreach, support multilingual access when AI is configured,
+                and measure community impact.
               </p>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <ButtonLink href="/dashboard/events/new" size="lg">
                   <CalendarPlus className="size-5" aria-hidden="true" />
                   Create Event
+                </ButtonLink>
+                <ButtonLink href="/resources" variant="secondary" size="lg">
+                  <LibraryBig className="size-5" aria-hidden="true" />
+                  View Resources
                 </ButtonLink>
                 <ButtonLink href="/events" variant="secondary" size="lg">
                   <Search className="size-5" aria-hidden="true" />
@@ -126,21 +131,21 @@ export default function Home() {
                     className="size-4 text-amber-200"
                     aria-hidden="true"
                   />
-                  No paid email required
+                  Free-tier first
                 </span>
                 <span className="flex items-center gap-2">
                   <Languages
                     className="size-4 text-amber-200"
                     aria-hidden="true"
                   />
-                  Language notes
+                  AI optional
                 </span>
                 <span className="flex items-center gap-2">
                   <Accessibility
                     className="size-4 text-amber-200"
                     aria-hidden="true"
                   />
-                  Accessibility notes
+                  No private health data
                 </span>
               </div>
             </div>
@@ -150,13 +155,13 @@ export default function Home() {
         <section className="bg-white py-6">
           <div className="mx-auto grid w-full max-w-7xl gap-3 px-4 text-sm font-semibold text-slate-700 sm:grid-cols-3 sm:px-6 lg:px-8">
             <div className="rounded-lg border border-emerald-100 bg-emerald-50 px-4 py-3">
-              Built for real local organizations
+              Built for real community organizations
             </div>
             <div className="rounded-lg border border-teal-100 bg-teal-50 px-4 py-3">
-              MVP first, scalable later
+              Events, resources, and access content
             </div>
             <div className="rounded-lg border border-amber-100 bg-amber-50 px-4 py-3">
-              Free and open-source package choices
+              Free templates with optional AI
             </div>
           </div>
         </section>
@@ -168,13 +173,12 @@ export default function Home() {
                 Platform Features
               </p>
               <h2 className="mt-3 text-3xl font-semibold tracking-normal text-slate-950 sm:text-4xl">
-                One calm workspace for the messy parts of community health
-                events.
+                One calm workspace for publishing, explaining, and tracking access.
               </h2>
               <p className="mt-4 text-base leading-8 text-slate-600">
-                HealthNook keeps event logistics, participant signups,
-                volunteer support, and impact reporting connected from the
-                first announcement through the final attendance count.
+                HealthNook keeps event logistics, resource information,
+                plain-language drafts, outreach content, participant signups,
+                volunteer support, and impact reporting connected.
               </p>
             </div>
 
@@ -207,12 +211,13 @@ export default function Home() {
                 Use Cases
               </p>
               <h2 className="mt-3 text-3xl font-semibold tracking-normal text-slate-950 sm:text-4xl">
-                Designed for groups that already do the work.
+                Designed for local groups helping people find care and support.
               </h2>
               <p className="mt-4 text-base leading-8 text-slate-600">
                 From a school health club to a neighborhood nonprofit,
-                HealthNook gives organizers a shared way to promote events,
-                collect signups, and understand turnout.
+                HealthNook gives organizers a shared way to explain resources,
+                promote health events, collect signups, coordinate volunteers,
+                and understand community reach.
               </p>
               <div className="mt-7 flex flex-wrap gap-2">
                 {audiences.map((audience) => (
@@ -248,7 +253,7 @@ export default function Home() {
               <div className="flex items-start justify-between gap-4 border-b border-slate-200 pb-5">
                 <div>
                   <p className="text-sm font-semibold text-teal-700">
-                    Event Impact Preview
+                    Example Impact Preview
                   </p>
                   <h3 className="mt-2 text-2xl font-semibold text-slate-950">
                     Community CPR Workshop
@@ -294,8 +299,8 @@ export default function Home() {
                   </div>
                 </div>
                 <p className="rounded-lg bg-amber-50 px-4 py-3 text-sm leading-6 text-slate-700">
-                  Strong turnout with enough volunteers for check-in, room
-                  setup, and parent questions.
+                  Example numbers shown for demo purposes. Organizer dashboards
+                  use live RSVP, volunteer, and check-in data.
                 </p>
               </div>
             </div>
@@ -305,12 +310,12 @@ export default function Home() {
                 Impact
               </p>
               <h2 className="mt-3 text-3xl font-semibold tracking-normal text-slate-950 sm:text-4xl">
-                Make turnout and service visible after the event.
+                Make attendance, volunteer support, and access work visible.
               </h2>
               <p className="mt-4 text-base leading-8 text-slate-600">
-                Organizers will be able to see RSVP totals, volunteer support,
-                checked-in attendance, and a plain-language impact summary they
-                can share with their community.
+                Organizers can see RSVP totals, volunteer support, checked-in
+                attendance, generated content, and plain-language summaries
+                they can share with their community.
               </p>
               <div className="mt-8">
                 <ButtonLink href="/dashboard" variant="outline" size="lg">

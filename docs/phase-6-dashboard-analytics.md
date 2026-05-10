@@ -22,9 +22,10 @@ This phase makes the organizer dashboard useful after people start signing up.
 
 Only the organizer who owns the event can view RSVP and volunteer lists. Public event pages still only show event details and public signup forms.
 
-## Phase 7 Dependency
+## Check-In Dependency
 
-Checked-in attendees and attendance percentage use the existing `checked_in` fields. They will become more useful after QR check-in is built in Phase 7.
+Checked-in attendees and attendance percentage use the existing `checked_in`
+fields. These numbers update when organizers use the QR check-in page.
 
 ## Test Phase 6
 

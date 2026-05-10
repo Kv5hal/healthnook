@@ -2,6 +2,7 @@ import {
   BarChart3,
   CalendarClock,
   Eye,
+  Languages,
   MapPin,
   Megaphone,
   Pencil,
@@ -141,6 +142,13 @@ export default async function ManageEventPage({
               <ButtonLink href={`/dashboard/events/${event.id}/check-in`}>
                 <QrCode className="size-4" aria-hidden="true" />
                 Check-In
+              </ButtonLink>
+              <ButtonLink
+                href={`/dashboard/events/${event.id}/content`}
+                variant="outline"
+              >
+                <Languages className="size-4" aria-hidden="true" />
+                Content
               </ButtonLink>
               <ButtonLink
                 href={`/dashboard/events/${event.id}/outreach`}

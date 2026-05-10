@@ -45,6 +45,7 @@ Phase 7 QR check-in notes live in `docs/phase-7-qr-check-in.md`.
 Phase 8 outreach generator notes live in `docs/phase-8-outreach-generator.md`.
 Phase 9 optional OpenAI notes live in `docs/phase-9-optional-openai.md`.
 Phase 10 deployment notes live in `docs/phase-10-deploy-vercel.md`.
+Phase 11 health resources and access content notes live in `docs/phase-11-health-resources-content.md`.
 
 Quick connection check after filling `.env.local`:
 

@@ -244,6 +244,14 @@ export default async function PublicEventPage({
                       <Megaphone className="size-4" aria-hidden="true" />
                       Outreach
                     </ButtonLink>
+                    <ButtonLink
+                      href={`/dashboard/events/${event.id}/content`}
+                      variant="outline"
+                      size="sm"
+                    >
+                      <Languages className="size-4" aria-hidden="true" />
+                      Content
+                    </ButtonLink>
                   </div>
                 </SurfaceCard>
               ) : null}

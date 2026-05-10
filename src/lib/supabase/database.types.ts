@@ -140,6 +140,71 @@ export type Database = {
           },
         ];
       };
+      resources: {
+        Row: {
+          id: string;
+          organization_id: string;
+          title: string;
+          category: string;
+          description: string;
+          location: string | null;
+          cost: string | null;
+          eligibility: string | null;
+          what_to_bring: string | null;
+          languages_supported: string | null;
+          contact_email: string;
+          contact_phone: string | null;
+          website_url: string | null;
+          published: boolean;
+          created_at: Timestamp;
+          updated_at: Timestamp;
+        };
+        Insert: {
+          id?: string;
+          organization_id: string;
+          title: string;
+          category: string;
+          description: string;
+          location?: string | null;
+          cost?: string | null;
+          eligibility?: string | null;
+          what_to_bring?: string | null;
+          languages_supported?: string | null;
+          contact_email: string;
+          contact_phone?: string | null;
+          website_url?: string | null;
+          published?: boolean;
+          created_at?: Timestamp;
+          updated_at?: Timestamp;
+        };
+        Update: {
+          id?: string;
+          organization_id?: string;
+          title?: string;
+          category?: string;
+          description?: string;
+          location?: string | null;
+          cost?: string | null;
+          eligibility?: string | null;
+          what_to_bring?: string | null;
+          languages_supported?: string | null;
+          contact_email?: string;
+          contact_phone?: string | null;
+          website_url?: string | null;
+          published?: boolean;
+          created_at?: Timestamp;
+          updated_at?: Timestamp;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "resources_organization_id_fkey";
+            columns: ["organization_id"];
+            isOneToOne: false;
+            referencedRelation: "organizations";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       rsvps: {
         Row: {
           id: string;
@@ -263,6 +328,70 @@ export type Database = {
           },
           {
             foreignKeyName: "generated_messages_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      generated_content: {
+        Row: {
+          id: string;
+          source: string;
+          model: string | null;
+          prompt_version: string;
+          language: string;
+          content_type: string;
+          event_id: string | null;
+          resource_id: string | null;
+          user_id: string;
+          output: string;
+          created_at: Timestamp;
+        };
+        Insert: {
+          id?: string;
+          source: string;
+          model?: string | null;
+          prompt_version: string;
+          language: string;
+          content_type: string;
+          event_id?: string | null;
+          resource_id?: string | null;
+          user_id: string;
+          output: string;
+          created_at?: Timestamp;
+        };
+        Update: {
+          id?: string;
+          source?: string;
+          model?: string | null;
+          prompt_version?: string;
+          language?: string;
+          content_type?: string;
+          event_id?: string | null;
+          resource_id?: string | null;
+          user_id?: string;
+          output?: string;
+          created_at?: Timestamp;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "generated_content_event_id_fkey";
+            columns: ["event_id"];
+            isOneToOne: false;
+            referencedRelation: "events";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "generated_content_resource_id_fkey";
+            columns: ["resource_id"];
+            isOneToOne: false;
+            referencedRelation: "resources";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "generated_content_user_id_fkey";
             columns: ["user_id"];
             isOneToOne: false;
             referencedRelation: "profiles";

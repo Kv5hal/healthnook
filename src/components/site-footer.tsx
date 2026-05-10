@@ -17,13 +17,13 @@ export function SiteFooter() {
         </Link>
 
         <div className="flex flex-wrap gap-x-5 gap-y-2">
-          <Link href="#features" className="hover:text-teal-700">
+          <Link href="/#features" className="hover:text-teal-700">
             Features
           </Link>
-          <Link href="#use-cases" className="hover:text-teal-700">
+          <Link href="/#use-cases" className="hover:text-teal-700">
             Use cases
           </Link>
-          <Link href="#impact" className="hover:text-teal-700">
+          <Link href="/#impact" className="hover:text-teal-700">
             Impact
           </Link>
         </div>

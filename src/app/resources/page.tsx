@@ -1,11 +1,10 @@
-import { CalendarClock, MapPin } from "lucide-react";
+import { Languages, LibraryBig, MapPin } from "lucide-react";
 
-import { EventStatusBadge } from "@/components/events/event-status-badge";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ButtonLink } from "@/components/ui/button-link";
 import { SurfaceCard } from "@/components/ui/surface-card";
-import { formatEventDateRange } from "@/lib/events/format";
+import { displayResourceValue } from "@/lib/resources/constants";
 import { createClient } from "@/lib/supabase/server";
 
 type OrganizationRelation = { name: string } | { name: string }[] | null;
@@ -18,17 +17,16 @@ function getOrganizationName(organization: OrganizationRelation) {
   return organization?.name ?? "Community organizer";
 }
 
-export default async function PublicEventsPage() {
+export default async function PublicResourcesPage() {
   const supabase = await createClient();
-  const { data: events } = await supabase
-    .from("events")
+  const { data: resources } = await supabase
+    .from("resources")
     .select(
-      "id, title, event_type, description, start_time, end_time, location, published, organizations(name)",
+      "id, title, category, description, location, cost, languages_supported, organizations(name)",
     )
     .eq("published", true)
-    .order("start_time", { ascending: true });
-
-  const eventList = events ?? [];
+    .order("created_at", { ascending: false });
+  const resourceList = resources ?? [];
 
   return (
     <>
@@ -37,69 +35,75 @@ export default async function PublicEventsPage() {
         <section className="border-b border-slate-200 bg-white px-4 py-14 sm:px-6 lg:px-8">
           <div className="mx-auto w-full max-w-7xl">
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-teal-700">
-              Public Events
+              Health Resources
             </p>
             <h1 className="mt-3 max-w-3xl text-4xl font-semibold tracking-normal text-slate-950">
-              Find health events shared by local community groups.
+              Find community health resources shared by local organizations.
             </h1>
             <p className="mt-4 max-w-2xl leading-8 text-slate-600">
-              Browse published HealthNook events, RSVP to attend, or offer to
-              volunteer with local organizers.
+              Browse practical information about services, support programs,
+              health education, and local access points.
             </p>
           </div>
         </section>
 
         <section className="px-4 py-10 sm:px-6 lg:px-8">
           <div className="mx-auto grid w-full max-w-7xl gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {eventList.length === 0 ? (
+            {resourceList.length === 0 ? (
               <SurfaceCard className="md:col-span-2 lg:col-span-3">
                 <h2 className="text-xl font-semibold text-slate-950">
-                  No published events yet.
+                  No published resources yet.
                 </h2>
                 <p className="mt-2 leading-7 text-slate-600">
-                  Once organizers publish events, they will appear here.
+                  Once organizers publish resources, they will appear here.
                 </p>
               </SurfaceCard>
             ) : (
-              eventList.map((event) => (
-                <SurfaceCard key={event.id} className="flex flex-col">
+              resourceList.map((resource) => (
+                <SurfaceCard key={resource.id} className="flex flex-col">
                   <div className="flex flex-wrap items-center gap-2">
-                    <EventStatusBadge
-                      published={event.published}
-                      startTime={event.start_time}
-                    />
                     <span className="rounded-lg bg-teal-50 px-3 py-1 text-xs font-semibold text-teal-700">
-                      {event.event_type}
+                      {resource.category}
+                    </span>
+                    <span className="rounded-lg bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">
+                      Published
                     </span>
                   </div>
                   <h2 className="mt-5 text-xl font-semibold text-slate-950">
-                    {event.title}
+                    {resource.title}
                   </h2>
                   <p className="mt-2 text-sm font-medium text-teal-700">
-                    {getOrganizationName(event.organizations)}
+                    {getOrganizationName(resource.organizations)}
                   </p>
                   <p className="mt-3 line-clamp-3 leading-7 text-slate-600">
-                    {event.description}
+                    {resource.description}
                   </p>
                   <div className="mt-5 space-y-3 text-sm text-slate-600">
-                    <p className="flex gap-2">
-                      <CalendarClock
-                        className="mt-0.5 size-4 shrink-0 text-teal-700"
-                        aria-hidden="true"
-                      />
-                      {formatEventDateRange(event.start_time, event.end_time)}
-                    </p>
                     <p className="flex gap-2">
                       <MapPin
                         className="mt-0.5 size-4 shrink-0 text-teal-700"
                         aria-hidden="true"
                       />
-                      {event.location}
+                      {displayResourceValue(resource.location)}
+                    </p>
+                    <p className="flex gap-2">
+                      <LibraryBig
+                        className="mt-0.5 size-4 shrink-0 text-teal-700"
+                        aria-hidden="true"
+                      />
+                      {displayResourceValue(resource.cost)}
+                    </p>
+                    <p className="flex gap-2">
+                      <Languages
+                        className="mt-0.5 size-4 shrink-0 text-teal-700"
+                        aria-hidden="true"
+                      />
+                      {displayResourceValue(resource.languages_supported)}
                     </p>
                   </div>
                   <div className="mt-6">
-                    <ButtonLink href={`/events/${event.id}`} variant="outline">
-                      View Event
+                    <ButtonLink href={`/resources/${resource.id}`} variant="outline">
+                      View Resource
                     </ButtonLink>
                   </div>
                 </SurfaceCard>

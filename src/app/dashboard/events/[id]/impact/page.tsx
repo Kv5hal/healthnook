@@ -168,7 +168,7 @@ export default async function ImpactPage({ params }: ImpactPageProps) {
               value={impact.volunteerCount}
             />
             <MetricCard
-              helper="Will update once QR check-in is built."
+              helper="Updates from the organizer check-in page."
               icon={CheckCircle2}
               label="Checked In"
               value={impact.checkedInAttendees}
@@ -182,8 +182,8 @@ export default async function ImpactPage({ params }: ImpactPageProps) {
               </h2>
               <p className="mt-3 leading-7 text-slate-600">
                 Attendance percentage compares checked-in attendees against
-                expected attendees. Phase 7 will add QR check-in, so this may
-                stay at 0% for now.
+                expected attendees. Use the check-in page during the event to
+                keep this number current.
               </p>
               <div className="mt-6 space-y-5">
                 <ProgressBar
