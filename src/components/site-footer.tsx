@@ -17,6 +17,9 @@ export function SiteFooter() {
         </Link>
 
         <div className="flex flex-wrap gap-x-5 gap-y-2">
+          <Link href="/about" className="hover:text-teal-700">
+            About
+          </Link>
           <Link href="/#features" className="hover:text-teal-700">
             Features
           </Link>

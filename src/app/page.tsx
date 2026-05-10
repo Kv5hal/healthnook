@@ -6,6 +6,7 @@ import {
   CalendarCheck2,
   CalendarPlus,
   ClipboardCheck,
+  GraduationCap,
   Languages,
   LibraryBig,
   MailCheck,
@@ -320,6 +321,49 @@ export default function Home() {
               <div className="mt-8">
                 <ButtonLink href="/dashboard" variant="outline" size="lg">
                   Open dashboard
+                  <ArrowRight className="size-5" aria-hidden="true" />
+                </ButtonLink>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-white py-20">
+          <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:px-8">
+            <SurfaceCard>
+              <div className="flex size-12 items-center justify-center rounded-lg bg-teal-50 text-teal-700">
+                <GraduationCap className="size-6" aria-hidden="true" />
+              </div>
+              <p className="mt-5 text-sm font-semibold uppercase tracking-[0.16em] text-teal-700">
+                Student Creator
+              </p>
+              <h2 className="mt-3 text-2xl font-semibold text-slate-950">
+                Kushal Thapaliya
+              </h2>
+              <p className="mt-3 leading-7 text-slate-600">
+                Junior at Keller Collegiate Academy interested in Computer
+                Science, AI, healthcare technology, and community service.
+              </p>
+            </SurfaceCard>
+
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-teal-700">
+                About the Creator
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-normal text-slate-950 sm:text-4xl">
+                Built from an interest in AI and community health access.
+              </h2>
+              <p className="mt-4 text-base leading-8 text-slate-600">
+                Kushal created HealthNook after seeing how community health
+                opportunities can be difficult for families to find, understand,
+                or act on. The project connects his interests in Computer
+                Science, artificial intelligence, healthcare technology, and
+                community service by helping local organizations share clearer,
+                family-friendly health information.
+              </p>
+              <div className="mt-7">
+                <ButtonLink href="/about" variant="outline" size="lg">
+                  Read About the Creator
                   <ArrowRight className="size-5" aria-hidden="true" />
                 </ButtonLink>
               </div>
