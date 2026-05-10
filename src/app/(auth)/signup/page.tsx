@@ -1,8 +1,9 @@
-import { HeartPulse, UserPlus } from "lucide-react";
+import { UserPlus } from "lucide-react";
 import Link from "next/link";
 
 import { signUpAction } from "@/app/(auth)/actions";
 import { AuthMessage } from "@/components/auth-message";
+import { SiteLogo } from "@/components/site-logo";
 import { TextInput } from "@/components/ui/form-field";
 import { SubmitButton } from "@/components/ui/submit-button";
 
@@ -19,15 +20,7 @@ export default async function SignupPage({ searchParams }: SignupPageProps) {
   return (
     <main className="min-h-svh bg-[#f6fbf9] px-4 py-10 sm:px-6">
       <div className="mx-auto flex w-full max-w-md flex-col gap-6">
-        <Link
-          href="/"
-          className="flex items-center gap-2 self-start font-semibold text-slate-950"
-        >
-          <span className="flex size-9 items-center justify-center rounded-lg bg-teal-700 text-white">
-            <HeartPulse className="size-5" aria-hidden="true" />
-          </span>
-          HealthNook
-        </Link>
+        <SiteLogo className="self-start" iconClassName="size-9" />
 
         <section className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm shadow-slate-950/5">
           <div>

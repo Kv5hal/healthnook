@@ -15,6 +15,10 @@ import { SiteHeader } from "@/components/site-header";
 import { ButtonLink } from "@/components/ui/button-link";
 import { SurfaceCard } from "@/components/ui/surface-card";
 import { displayResourceValue } from "@/lib/resources/constants";
+import {
+  getFounderResourceBySlug,
+  HEALTHNOOK_RESOURCE_DISCLAIMER,
+} from "@/lib/resources/founder-resources";
 import { createClient } from "@/lib/supabase/server";
 
 type PublicResourcePageProps = {
@@ -44,10 +48,127 @@ function getOrganization(organization: OrganizationRelation) {
   return organization;
 }
 
+function InfoList({
+  items,
+  title,
+}: {
+  items: string[];
+  title: string;
+}) {
+  return (
+    <SurfaceCard>
+      <h2 className="text-xl font-semibold text-slate-950">{title}</h2>
+      <ul className="mt-4 space-y-3 leading-7 text-slate-600">
+        {items.map((item) => (
+          <li key={item} className="flex gap-3">
+            <span
+              className="mt-2 size-2 shrink-0 rounded-full bg-teal-600"
+              aria-hidden="true"
+            />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </SurfaceCard>
+  );
+}
+
 export default async function PublicResourcePage({
   params,
 }: PublicResourcePageProps) {
   const { id } = await params;
+  const founderResource = getFounderResourceBySlug(id);
+
+  if (founderResource) {
+    return (
+      <>
+        <SiteHeader />
+        <main className="min-h-[calc(100svh-4rem)] bg-[#f6fbf9]">
+          <section className="border-b border-slate-200 bg-white px-4 py-14 sm:px-6 lg:px-8">
+            <div className="mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+              <div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="rounded-lg bg-teal-50 px-3 py-1 text-xs font-semibold text-teal-700">
+                    {founderResource.category}
+                  </span>
+                  <span className="rounded-lg bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+                    {founderResource.label}
+                  </span>
+                  <span className="rounded-lg bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700">
+                    Published
+                  </span>
+                </div>
+                <h1 className="mt-5 max-w-4xl text-4xl font-semibold tracking-normal text-slate-950">
+                  {founderResource.title}
+                </h1>
+                <p className="mt-4 max-w-3xl leading-8 text-slate-600">
+                  {founderResource.shortDescription}
+                </p>
+              </div>
+              <SurfaceCard>
+                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-teal-700">
+                  Resource Type
+                </p>
+                <h2 className="mt-3 text-2xl font-semibold text-slate-950">
+                  Founder-created informational resource
+                </h2>
+                <p className="mt-3 leading-7 text-slate-600">
+                  Created by HealthNook to help families, students, volunteers,
+                  and community organizers understand health event logistics in
+                  plain language.
+                </p>
+              </SurfaceCard>
+            </div>
+          </section>
+
+          <section className="px-4 py-10 sm:px-6 lg:px-8">
+            <div className="mx-auto grid w-full max-w-7xl gap-4 lg:grid-cols-[1.05fr_0.95fr]">
+              <div className="space-y-4">
+                <InfoList
+                  title="Who this may help"
+                  items={founderResource.whoThisMayHelp}
+                />
+                <InfoList
+                  title="Key points"
+                  items={founderResource.keyPoints}
+                />
+              </div>
+
+              <div className="space-y-4">
+                <InfoList
+                  title="What to bring or prepare"
+                  items={founderResource.whatToBringOrPrepare}
+                />
+                <InfoList
+                  title="Questions to ask"
+                  items={founderResource.questionsToAsk}
+                />
+
+                <SurfaceCard>
+                  <h2 className="flex items-center gap-2 text-xl font-semibold text-slate-950">
+                    <ShieldAlert className="size-5" aria-hidden="true" />
+                    Safety note
+                  </h2>
+                  <p className="mt-3 leading-7 text-slate-600">
+                    {founderResource.safetyNote}
+                  </p>
+                  <p className="mt-4 leading-7 text-slate-600">
+                    {HEALTHNOOK_RESOURCE_DISCLAIMER}
+                  </p>
+                </SurfaceCard>
+
+                <ButtonLink href="/resources" variant="outline">
+                  Back to Resources
+                </ButtonLink>
+              </div>
+            </div>
+          </section>
+        </main>
+        <SiteFooter />
+      </>
+    );
+  }
+
   const supabase = await createClient();
   const { data: resource } = await supabase
     .from("resources")
@@ -202,8 +323,7 @@ export default async function PublicResourcePage({
                   Safety note
                 </h2>
                 <p className="mt-3 leading-7 text-slate-600">
-                  HealthNook provides community information and is not medical
-                  advice, diagnosis, or treatment guidance.
+                  {HEALTHNOOK_RESOURCE_DISCLAIMER}
                 </p>
               </SurfaceCard>
             </div>
