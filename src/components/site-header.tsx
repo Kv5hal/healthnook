@@ -1,4 +1,5 @@
-import { CalendarPlus, HeartPulse, LayoutDashboard, LogIn } from "lucide-react";
+import Image from "next/image";
+import { CalendarPlus, LayoutDashboard, LogIn } from "lucide-react";
 import Link from "next/link";
 
 import { ButtonLink } from "@/components/ui/button-link";
@@ -23,9 +24,15 @@ export async function SiteHeader() {
           className="flex min-w-0 items-center gap-2 font-semibold text-slate-950"
           aria-label="HealthNook home"
         >
-          <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-teal-700 text-white">
-            <HeartPulse className="size-5" aria-hidden="true" />
-          </span>
+          <Image
+            alt=""
+            aria-hidden="true"
+            className="size-9 shrink-0"
+            height={36}
+            priority
+            src="/icon.png"
+            width={36}
+          />
           <span className="text-lg tracking-normal">HealthNook</span>
         </Link>
 

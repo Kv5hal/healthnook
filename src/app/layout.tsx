@@ -15,25 +15,24 @@ const geistMono = Geist_Mono({
 });
 
 const siteUrl = getPublicSiteUrl();
+const siteDescription =
+  "HealthNook helps local organizations create, explain, promote, and track community health events and resources.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "HealthNook | Community health access platform",
-  description:
-    "Publish health events and resources, explain information in plain language, generate outreach, and track community impact with HealthNook.",
+  title: "HealthNook",
+  description: siteDescription,
   openGraph: {
-    description:
-      "Publish health events and resources, explain information in plain language, generate outreach, and track community impact with HealthNook.",
+    description: siteDescription,
     siteName: "HealthNook",
-    title: "HealthNook | Community health access platform",
+    title: "HealthNook",
     type: "website",
     url: siteUrl,
   },
   twitter: {
     card: "summary_large_image",
-    description:
-      "Publish health events and resources, explain information in plain language, generate outreach, and track community impact with HealthNook.",
-    title: "HealthNook | Community health access platform",
+    description: siteDescription,
+    title: "HealthNook",
   },
 };
 
